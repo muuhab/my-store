@@ -20,4 +20,7 @@ npm i
 
 ## Start App
 
-`ng serve`
+```bash
+ng serve
+```
+App will start at http://localhost:4200

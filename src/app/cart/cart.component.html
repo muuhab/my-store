@@ -1,4 +1,4 @@
-<div *ngIf="confirm===false">
+<!-- <div *ngIf="confirm===false">
   <div *ngIf="cart.length>0" class="cart-container">
     <ul *ngFor=" let item of cart" class="cart">
       <li class="cart-item">
@@ -32,4 +32,82 @@
     No items are in the cart
   </div>
 </div>
-<app-confirmation *ngIf="confirm===true" [total]="total"></app-confirmation>
+<app-confirmation *ngIf="confirm===true" [total]="total"></app-confirmation> -->
+<div *ngIf="confirm===false">
+<div class="container-fluid pt-5" *ngIf="cart.length>0" >
+  <div class="row px-xl-5">
+    <div class="col-lg-8 table-responsive mb-5">
+      <table class="table table-bordered text-center mb-0">
+        <thead class="bg-secondary text-dark">
+          <tr>
+            <th>Products</th>
+            <th>Price</th>
+            <th>Quantity</th>
+            <th>Remove</th>
+          </tr>
+        </thead>
+        <tbody class="align-middle">
+          <tr *ngFor=" let item of cart">
+            <td class="align-middle"><img src="{{item.url}}" alt="" style="width: 50px;"> Colorful Stylish Shirt</td>
+            <td class="align-middle">${{item.price}}</td>
+            <td class="align-middle">
+              <p>{{item.quantity}}</p>
+            </td>
+            <td class="align-middle"><button class="btn btn-sm btn-primary">
+                <fa-icon class="fa fa-times" [icon]="faTimes"></fa-icon>
+              </button></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="col-lg-4">
+      <div class="card border-secondary mb-5">
+        <div class="card-header bg-secondary border-0">
+          <h4 class="font-weight-semi-bold m-0">Cart Summary</h4>
+        </div>
+        <div class="card-body">
+          <div class="d-flex justify-content-between mb-3 pt-1">
+            <h6 class="font-weight-medium">Subtotal</h6>
+            <h6 class="font-weight-medium">${{total}}</h6>
+          </div>
+          <div class="d-flex justify-content-between">
+            <h6 class="font-weight-medium">Shipping</h6>
+            <h6 class="font-weight-medium">$10</h6>
+          </div>
+        </div>
+        <div class="card-footer border-secondary bg-transparent">
+          <div class="d-flex justify-content-between mt-2">
+            <h5 class="font-weight-bold">Total</h5>
+            <h5 class="font-weight-bold">${{total+10}}</h5>
+          </div>
+          <button class="btn btn-block btn-primary my-3 py-3">Proceed To Checkout</button>
+        </div>
+      </div>
+    </div>
+    <div class="col-lg-4">
+      <form  #form="ngForm" (ngSubmit)="onSubmit()">
+
+        <div class="control-group">
+          <label>Full Name</label>
+          <input type="text" class="form-control" minlength="3" placeholder="min 3 letters" required name="name"
+            [(ngModel)]="name">
+        </div>
+        <div class="control-group">
+          <label>Address</label>
+          <input type="text" class="form-control" name="address" minlength="8" placeholder="min 8 letters" required [(ngModel)]="address">
+        </div>
+
+        <div class="control-group">
+          <label>Credit Card Number</label>
+          <input type="number" name="card" class="form-control" placeholder="min 16 digit" minlength="16" required [(ngModel)]="card">
+        </div>
+
+        <div>
+          <button class="btn btn-primary py-2 px-4 mt-4" [disabled]="form.invalid" type="submit" id="sendMessageButton">Submit</button>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
+</div>
+<app-confirmation *ngIf="confirm===true" [total]="total"></app-confirmation> -->

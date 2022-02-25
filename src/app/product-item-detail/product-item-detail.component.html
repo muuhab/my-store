@@ -1,20 +1,32 @@
-<div class="detail-container">
-  <div class="detail-item">
+<div class="container-fluid py-5">
+  <div class="row px-xl-5">
+    <div class="col-lg-5 pb-5">
+      <div id="product-carousel" class="carousel slide" data-ride="carousel">
+        <img class="w-80 " src="{{product.url}}" alt="Image">
+      </div>
+    </div>
 
-    <img src="{{product.url}}" alt="">
-    <h3>{{product.name}}</h3>
-    <span>{{product.price}}</span>
-    <p> {{product.description}}</p>
-    <select name="quantity" id="quantity" class="select-input">
-      <option value=1>1</option>
-      <option value=2>2</option>
-      <option value=3>3</option>
-      <option value=5>5</option>
-      <option value=6>6</option>
-      <option value=7>7</option>
-      <option value=8>8</option>
-    </select>
-    <button>Add To Cart</button>
-    <a routerLink="/">Back To Products</a>
+    <div class="col-lg-7 pb-5">
+      <h3 class="font-weight-semi-bold">{{product.name}}</h3>
+      <h3 class="font-weight-semi-bold mb-4">${{product.price}}</h3>
+      <p class="mb-4">{{product.description}}</p>
+      <div class="d-flex align-items-center mb-4 pt-2">
+        <div class="input-group quantity mr-3" style="width: 130px;">
+          <select name="quantity" id="quantity" class="selesct-input form-control" [(ngModel)]="quant">
+            <option value=1>1</option>
+            <option value=2>2</option>
+            <option value=3>3</option>
+            <option value=5>5</option>
+            <option value=6>6</option>
+            <option value=7>7</option>
+            <option value=8>8</option>
+          </select>
+        </div>
+        <button class="btn btn-primary px-3 mx-3" (click)="addToProduct()">
+          <fa-icon class="mr-1" [icon]="faShoppingCart"></fa-icon> Add To Cart
+        </button>
+      </div>
+      <a routerLink="/" class="btn  px-3 mx-3 btn-outline-primary">Back To Products</a>
+    </div>
   </div>
 </div>

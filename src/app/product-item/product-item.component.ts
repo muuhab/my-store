@@ -1,6 +1,7 @@
-import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
+import { Component, OnInit, Input,  } from '@angular/core';
 import { Product } from '../../models/types';
 import { ProductService } from '../../app/product.service';
+import { faEye, faShoppingCart } from '@fortawesome/free-solid-svg-icons';
 
 @Component({
   selector: 'app-product-item',
@@ -10,6 +11,8 @@ import { ProductService } from '../../app/product.service';
 export class ProductItemComponent implements OnInit {
   @Input() product: Product;
   quant: string = '1';
+  faEye = faEye;
+  faShoppingCart = faShoppingCart;
 
   constructor(private productService: ProductService) {
     this.product = {
@@ -24,8 +27,7 @@ export class ProductItemComponent implements OnInit {
 
   ngOnInit(): void {}
   addToProduct(): void {
-    this.productService.addToCart(this.product,parseInt(this.quant));
+    this.productService.addToCart(this.product, parseInt(this.quant));
     alert(` ${this.product.name} added successfully`);
   }
-
 }

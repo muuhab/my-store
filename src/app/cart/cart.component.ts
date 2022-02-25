@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { Product } from 'src/models/types';
 import { ProductService } from '../product.service';
+import { faTimes } from '@fortawesome/free-solid-svg-icons';
 
 @Component({
   selector: 'app-cart',
@@ -9,12 +10,13 @@ import { ProductService } from '../product.service';
   styleUrls: ['./cart.component.css'],
 })
 export class CartComponent implements OnInit {
+  faTimes = faTimes;
   cart: Product[] = [];
   name: string = '';
   address: string = '';
   card: number = 0;
   total: number = 0;
-  confirm:boolean = false;
+  confirm: boolean = false;
 
   constructor(private productService: ProductService, private router: Router) {}
 
@@ -27,6 +29,6 @@ export class CartComponent implements OnInit {
 
   onSubmit(): void {
     console.log({ name: this.name, add: this.address, card: this.card });
-    this.confirm=true
+    this.confirm = true;
   }
 }

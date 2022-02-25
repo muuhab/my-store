@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Product } from '../../models/types';
 import { ProductService } from '../product.service';
+import { faAngleDoubleUp } from '@fortawesome/free-solid-svg-icons';
 
 @Component({
   selector: 'app-product-list',
@@ -9,6 +10,8 @@ import { ProductService } from '../product.service';
 })
 export class ProductListComponent implements OnInit {
   products: Product[] = [];
+  faAngleDoubleUp = faAngleDoubleUp;
+
   constructor(private productService: ProductService) {}
 
   ngOnInit(): void {

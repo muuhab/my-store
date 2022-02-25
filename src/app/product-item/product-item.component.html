@@ -1,17 +1,28 @@
-<div class="product-container">
-  <a routerLink="/products/{{product.id}}" [state]="product">
-    <img class="product-image" src="{{product.url}}" alt="">
-  </a>
-  <h3>{{product.name}}</h3>
-  <span>${{product.price}}</span>
-  <select name="quantity" id="quantity" class="select-input" [(ngModel)]="quant">
-    <option value=1>1</option>
-    <option value=2>2</option>
-    <option value=3>3</option>
-    <option value=5>5</option>
-    <option value=6>6</option>
-    <option value=7>7</option>
-    <option value=8>8</option>
-  </select>
-  <button (click)="addToProduct()">Add to Cart</button>
-</div>
+  <div class="card product-item border-0 mb-4">
+    <div class="card-header product-img position-relative overflow-hidden bg-transparent border p-0">
+      <img class="img-fluid w-100" src="{{product.url}}" alt="">
+    </div>
+    <div class="card-body border-left border-right text-center p-0 pt-4 pb-3">
+      <h6 class="text-truncate mb-3">{{product.name}}</h6>
+      <div class="d-flex justify-content-center">
+        <h6>${{product.price}}</h6>
+      </div>
+    </div>
+    <div class="card-footer d-flex justify-content-between bg-light border align-items-center">
+      <a class="btn btn-sm text-dark p-0" routerLink="/products/{{product.id}}" [state]="product">
+        <fa-icon [icon]="faEye" class="fas fa-eye text-primary mr-1"></fa-icon> View Detail
+      </a>
+      <a class="btn btn-sm text-dark p-0" (click)="addToProduct()">
+        <fa-icon [icon]="faShoppingCart" class="fas fa-eye text-primary mr-1"></fa-icon> Add To Cart
+      </a>
+      <select name="quantity" id="quantity" class="select-input form-control" [(ngModel)]="quant">
+        <option value=1>1</option>
+        <option value=2>2</option>
+        <option value=3>3</option>
+        <option value=5>5</option>
+        <option value=6>6</option>
+        <option value=7>7</option>
+        <option value=8>8</option>
+      </select>
+    </div>
+  </div>

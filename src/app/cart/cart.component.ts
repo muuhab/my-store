@@ -31,4 +31,9 @@ export class CartComponent implements OnInit {
     console.log({ name: this.name, add: this.address, card: this.card });
     this.confirm = true;
   }
+
+  onRemove(product:Product):void {
+    this.productService.removeFromCart(product)
+    this.cart = this.productService.fetchCart();
+  }
 }

@@ -1,0 +1,35 @@
+<div *ngIf="confirm===false">
+  <div *ngIf="cart.length>0" class="cart-container">
+    <ul *ngFor=" let item of cart" class="cart">
+      <li class="cart-item">
+        <img src="{{item.url}}" alt="">
+        <div class="cart-item-details">
+          <h3>{{item.name}}</h3>
+          <span>{{item.price}}</span>
+          <p>Amount <b>{{item.quantity}}</b></p>
+        </div>
+      </li>
+    </ul>
+    <h1>Total ${{total}}</h1>
+    <div>
+      <form #form="ngForm" (ngSubmit)="onSubmit()" class="form-margin">
+        <label>Full Name</label>
+        <input type="text" minlength="3" placeholder="min 3 letters" required name="name" [(ngModel)]="name">
+
+        <label>Address</label>
+        <input type="text" name="address" minlength="8" placeholder="min 8 letters" required [(ngModel)]="address">
+
+        <label>Credit Card Number</label>
+        <input type="number" name="card" placeholder="min 16 digit" minlength="16" required [(ngModel)]="card">
+
+
+        <button type="submit" [disabled]="form.invalid">Submit</button>
+      </form>
+    </div>
+  </div>
+
+  <div *ngIf="cart.length==0" class="empty-cart-message">
+    No items are in the cart
+  </div>
+</div>
+<app-confirmation *ngIf="confirm===true" [total]="total"></app-confirmation>

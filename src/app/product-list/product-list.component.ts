@@ -11,6 +11,8 @@ import { faAngleDoubleUp } from '@fortawesome/free-solid-svg-icons';
 export class ProductListComponent implements OnInit {
   products: Product[] = [];
   faAngleDoubleUp = faAngleDoubleUp;
+  quant: string = '';
+  addedAlert:boolean=false;
 
   constructor(private productService: ProductService) {}
 
@@ -21,5 +23,13 @@ export class ProductListComponent implements OnInit {
       }
       this.products = res;
     });
+  }
+
+  addToCart(product: { product: Product; quant: string }): void {
+    this.productService.addToCart(product.product, parseInt(product.quant));
+    this.addedAlert=true
+    setTimeout(() => {
+      this.addedAlert=false
+    }, 1500);
   }
 }

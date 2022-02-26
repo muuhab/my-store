@@ -16,21 +16,19 @@ export class ProductService {
   }
 
   addToCart(product: Product, quant: number): void {
-    product.quantity += quant;
     for (let index = 0; index < this.cart.length; index++) {
       if (this.cart[index].id === product.id) {
         this.cart[index].quantity += quant;
+        this.cart[index].price += quant;
       }
     }
     this.cart.map((p) => p.id).includes(product.id)
       ? null
-      : this.cart.push(product);
+      : this.cart.push({...product,price:product.price*quant,quantity:quant});
   }
 
   removeFromCart(product: Product): void {
-    console.log(this.cart)
     this.cart = this.cart.filter((p) => p.id !== product.id);
-    console.log(this.cart)
   }
 
   fetchCart(): Product[] {

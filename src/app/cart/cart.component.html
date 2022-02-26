@@ -1,5 +1,8 @@
 <div *ngIf="confirm===false">
 <div class="container-fluid pt-5" *ngIf="cart.length>0" >
+  <div *ngIf="removed===true"class="alert alert-success" role="alert">
+    Product has been removed!
+  </div>
   <div class="row px-xl-5">
     <div class="col-lg-8 table-responsive mb-5">
       <table class="table table-bordered text-center mb-0">
@@ -54,28 +57,39 @@
 
         <div class="control-group">
           <label>Full Name</label>
-          <input type="text" class="form-control" minlength="3" placeholder="min 3 letters" required name="name"
-            [(ngModel)]="name">
-        </div>
+          <input type="text" id="name" class="form-control" minlength="6" placeholder="Your full name" required name="name"
+            [(ngModel)]="name" #fullName="ngModel" (ngModelChange)="validateName($event)">
+              <div class="text-danger">
+                {{nameError}}
+              </div>
+            </div>
         <div class="control-group">
           <label>Address</label>
-          <input type="text" class="form-control" name="address" minlength="8" placeholder="min 8 letters" required [(ngModel)]="address">
-        </div>
+          <input type="text" class="form-control" #addressInput="ngModel" name="address" minlength="8" placeholder="Your address" required [(ngModel)]="address" (ngModelChange)="validateAddress($event)">
+
+            <div class="text-danger">
+              {{addressError}}
+            </div>
+          </div>
 
         <div class="control-group">
           <label>Credit Card Number</label>
-          <input type="number" name="card" class="form-control" placeholder="min 16 digit" minlength="16" required [(ngModel)]="card">
-        </div>
+          <input type="number" name="card" pattern=".{16,}" #creditCard="ngModel" class="form-control" placeholder="Your credit card number" minlength="16" required [(ngModel)]="card" (ngModelChange)="validateCard($event)">
+            <div class="text-danger">
+              {{cardError}}
+            </div>
+          </div>
 
         <div>
           <button class="btn btn-primary py-2 px-4 mt-4" [disabled]="form.invalid" type="submit" id="sendMessageButton">Submit</button>
         </div>
       </form>
+
     </div>
   </div>
 </div>
 </div>
 <app-confirmation *ngIf="confirm===true" [total]="total"></app-confirmation>
-<div *ngIf="cart.length==0" class="empty-cart-message">
+<div *ngIf="cart.length==0" class="empty-cart-message text-center">
   No items are in the cart
 </div>

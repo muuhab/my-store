@@ -12,7 +12,7 @@
       <a class="btn btn-sm text-dark p-0" routerLink="/products/{{product.id}}" [state]="product">
         <fa-icon [icon]="faEye" class="fas fa-eye text-primary mr-1"></fa-icon> View Detail
       </a>
-      <a class="btn btn-sm text-dark p-0" (click)="addToProduct()">
+      <a class="btn btn-sm text-dark p-0" (click)="addedAlert.emit({product,quant})">
         <fa-icon [icon]="faShoppingCart" class="fas fa-eye text-primary mr-1"></fa-icon> Add To Cart
       </a>
       <select name="quantity" id="quantity" class="select-input form-control" [(ngModel)]="quant">
